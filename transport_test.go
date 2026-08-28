@@ -242,6 +242,16 @@ func TestCode6ResendsThreadedRequestAsDetachedRoot(t *testing.T) {
 	}
 }
 
+func TestDeliveryCode200IsAccepted(t *testing.T) {
+	fake := newFakeAPI(t)
+	transport := newTransport(t, fake)
+	code := 200
+	fake.setDelivery(42, recipientDelivery{Addr: testServer, ResponseCode: &code})
+	if err := transport.checkRequestDelivery(context.Background(), &exchange{activeID: 42}); err != nil {
+		t.Fatalf("checkRequestDelivery()=%v, want accepted delivery", err)
+	}
+}
+
 func TestStreamingEventsAreReorderedBySequence(t *testing.T) {
 	fake := newFakeAPI(t)
 	fake.onSend = func(id int64, draft capturedDraft) {

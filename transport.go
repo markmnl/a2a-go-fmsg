@@ -234,6 +234,12 @@ func (t *Transport) checkRequestDelivery(ctx context.Context, exchange *exchange
 			continue
 		}
 		code := *delivery.ResponseCode
+		if code == 200 {
+			// Some FMSG-003 implementations retain the wire-level per-recipient
+			// acceptance code instead of representing success only through
+			// time_delivered. Either representation means delivery succeeded.
+			return nil
+		}
 		if code == 6 && exchange.threaded && !exchange.detached {
 			t.forgetParent(exchange.parent)
 			id, err := t.api.createAndSend(ctx, outgoingMessage{
