@@ -387,15 +387,15 @@ func (c *webAPIClient) doJSON(ctx context.Context, method, path string, requestB
 }
 
 func (c *webAPIClient) do(ctx context.Context, method, path string, body []byte, contentType string) (*http.Response, error) {
-	for attempt := 0; attempt < 2; attempt++ {
+	for attempt := range 2 {
 		token, err := c.accessToken(ctx)
 		if err != nil {
 			return nil, err
 		}
 		endpoint := *c.baseURL
 		endpoint.Path = strings.TrimRight(endpoint.Path, "/") + strings.SplitN(path, "?", 2)[0]
-		if index := strings.IndexByte(path, '?'); index >= 0 {
-			endpoint.RawQuery = path[index+1:]
+		if _, after, ok := strings.Cut(path, "?"); ok {
+			endpoint.RawQuery = after
 		}
 		request, err := http.NewRequestWithContext(ctx, method, endpoint.String(), bytes.NewReader(body))
 		if err != nil {

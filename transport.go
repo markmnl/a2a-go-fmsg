@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"iter"
 	"net/http"
+	"slices"
 	"strings"
 	"sync"
 	"time"
@@ -197,12 +198,7 @@ func (t *Transport) matchesCandidate(item message, exchange *exchange) bool {
 		return false
 	}
 	if item.PID != nil {
-		for _, id := range exchange.attemptIDs {
-			if *item.PID == id {
-				return true
-			}
-		}
-		return false
+		return slices.Contains(exchange.attemptIDs, *item.PID)
 	}
 	return item.Topic == "A2A "+exchange.requestID
 }
