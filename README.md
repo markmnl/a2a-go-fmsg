@@ -1,7 +1,8 @@
-# A2A Go FMSG Transport
-
+[![Build & Test](https://github.com/markmnl/a2a-go-fmsg/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/markmnl/a2a-go-fmsg/actions/workflows/test.yml?query=branch%3Amain)
+[![Go 1.27+](https://img.shields.io/badge/Go-1.27%2B-00ADD8?logo=go&logoColor=white)](https://go.dev/dl/)
 [![Go Reference](https://pkg.go.dev/badge/github.com/markmnl/a2a-go-fmsg.svg)](https://pkg.go.dev/github.com/markmnl/a2a-go-fmsg)
-[![test](https://github.com/markmnl/a2a-go-fmsg/actions/workflows/test.yml/badge.svg)](https://github.com/markmnl/a2a-go-fmsg/actions/workflows/test.yml)
+
+# A2A Go FMSG Transport
 
 `a2afmsg` is an FMSG transport plugin for the official
 [A2A Go SDK](https://github.com/a2aproject/a2a-go). It implements
@@ -21,7 +22,7 @@ https://github.com/markmnl/fmsg/blob/main/standards/fmsg-004-a2a-binding.md
 go get github.com/markmnl/a2a-go-fmsg@v0.1.0
 ```
 
-The module requires Go 1.25 or newer and A2A Go SDK v2.
+The module requires Go 1.27 or newer and A2A Go SDK v2.
 
 ## Use
 
