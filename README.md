@@ -1,3 +1,5 @@
+> **Obsolete:** This repository is obsolete and no longer actively maintained.
+
 # A2A Go FMSG Transport
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/markmnl/a2a-go-fmsg.svg)](https://pkg.go.dev/github.com/markmnl/a2a-go-fmsg)
